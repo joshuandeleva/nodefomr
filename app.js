@@ -48,6 +48,7 @@ app.engine(
 app.set("view engine", "handlebars");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(ex)
 //redirects to login if your not authenticated
 const redirectToLogin = (req, res, next) => {
 	if (!req.session.userId) {
@@ -56,6 +57,7 @@ const redirectToLogin = (req, res, next) => {
 		next();
 	}
 };
+
 //redirects to dashboard if your are authenticated
 const redirectTodashboard = (req, res, next) => {
 	if (req.session.userId) {
@@ -101,7 +103,18 @@ const validateLogin = [
 		checkFalsy: true,
 	}),
 ];
-app.post("/register", (req, res) => {
+app.post("/register",  [
+    // username must be an email
+    check('email').isEmail(),
+    check('username').isEmail().withMessage('invalid username'),
+    // password must be at least 5 chars long
+    check('password').isLength({ min: 5 }),
+  ],(req, res) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        console.log(errors);
+        return res.render("register", {errors: errors.array()});
+      }
 	const { username, firstname, lastname, phonenumber, email, password } =
 		req.body;
 	if (username && firstname && lastname && phonenumber && email && password) {
