@@ -1,0 +1,18 @@
+<button>logout</button>
+[ check("username", "Your username should be 8 characters") .exists({ checkNull:
+true }) .isLength({ min: 8 }) .matches("[0-9]") .withMessage("username must ahve
+a number") .matches("[A-Z]") .withMessage("username Must Contain an Uppercase
+Letter"), check("firstname") .exists({ checkNull: true }) .isLength({ min: 8 })
+.withMessage("Firstname Must be 8+ characters") .matches("[A-Z]")
+.withMessage("Firstname Must Contain an Uppercase Letter"), check("lastname")
+.exists({ checkNull: true }) .isLength({ min: 8 }) .withMessage("Last Must be 8+
+characters") .matches("[A-Z]") .withMessage("LastName Must Contain an Uppercase
+Letter"), check("phonenumber") .exists({ checkNull: true }) .isLength({ min: 8
+}) .withMessage("Phonenuber Must be 8+ characters") .matches("[0-9]")
+.withMessage("Phonenumber Must be number"), check("email") .isEmail() .exists({
+checkNull: true }) .isLength({ min: 8 }) .withMessage("Password Must be 8+
+characters") .matches("[A-Z]") .withMessage("Emailshould have a uppercase")
+.normalizeEmail() .toLowerCase(), check("password") .exists({ checkNull: true })
+.isLength({ min: 8 }) .withMessage("Password Must be 8+ characters")
+.matches("[0-9]") .withMessage("Password Must Contain a Number")
+.matches("[A-Z]") .withMessage("Password Must Contain an Uppercase Letter"), ],
