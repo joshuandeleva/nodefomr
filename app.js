@@ -19,7 +19,7 @@ app.engine(
 app.set("view engine", "handlebars");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 //routes
-app.get("/register", (req, res) => {
+app.get("/", (req, res) => {
 	res.render("register");
 });
 app.get("/login", (req, res) => {
