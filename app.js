@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const { body, validationResult } = require("express-validator");
 
 const app = express();
-const PORT = 5000;
+const port = process.env.PORT || 5000;
 //load static files
 app.use(express.static(__dirname + "/public"));
 //set the templating system
@@ -66,4 +66,4 @@ app.post(
 app.post("/login", (req, res) => {});
 
 //listen to port
-app.listen(PORT, () => console.info(`App running on port ${PORT}`));
+app.listen(port, () => console.info(`App running on port ${port}`));
